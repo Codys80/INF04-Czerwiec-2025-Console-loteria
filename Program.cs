@@ -6,8 +6,8 @@
         {
             Random losowy = new Random();
             int ileZestawow = Convert.ToInt16(Console.ReadLine());
-            int suma = 0;
             int[,] zestaw = new int[ileZestawow, 6];
+            int[] wystapienia = new int[50];
 
             void wyswietl()
             {
@@ -19,22 +19,31 @@
                         Console.Write(" " + zestaw[i, j]);
                     }
                 }
-                
+                        for(int k = 1; k<50; k++)
+                        {
+                            Console.Write("\nIlośc wystąpień liczby: " + k + " wynosi: " + wystapienia[k]);
+                        }
             }
-
             int[,] wypelnij(int[,] zestaw)
             { 
                 for (int i = 0; i < ileZestawow; i++)
                     {
                         for(int j = 0; j < 6; j++)
                         {
-                            
-                            zestaw[i, j] = losowy.Next(1,49);
-                            suma += zestaw[i, j];
+                        zestaw[i, j] = losowy.Next(1,49);
+                            for (int k = 1; k < 50; k++)
+                            {
+                                if (zestaw[i, j] == k)
+                                {
+                                    wystapienia[k]++;
+                                }
+                            }
                         }    
                     }
                     return zestaw;
             }
+
+
             wypelnij(zestaw);
             wyswietl();
         }
